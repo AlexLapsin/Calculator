@@ -5,3 +5,61 @@ body{
     align-items: center;
     margin:0px;
 }
+
+.calculator-container{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    border-style: solid;
+    padding: 5px;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-bottom: 0px;
+}
+
+.display{
+    display: flex;
+    flex-direction: row-reverse;
+    border-style: solid;
+    height: 120px;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.operators-top{
+    display: flex;
+    gap:5px;
+}
+
+.middle{
+    display: flex;
+    height: 410px;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 5px;
+}
+
+.digits-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 310px;
+    gap: 5px;
+}
+
+button{
+    height:100px;
+    width:100px;
+}
+.operators-right{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.digit-0{
+    flex: 2;
+}
