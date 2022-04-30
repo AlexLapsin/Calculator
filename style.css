@@ -60,6 +60,6 @@ button{
     gap: 5px;
 }
 
-.digit-0{
+#digit-0{
     flex: 2;
 }
