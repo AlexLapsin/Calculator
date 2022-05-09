@@ -7,7 +7,6 @@ function operate(operator,a,b){
     return operator(a,b);
 }
 
-let displayValue = "";
 let tempArr = [];
 let firstVal = 0;
 
@@ -17,34 +16,27 @@ const display = document.querySelector(".display");
 const buttons = document.querySelectorAll("button");
 
 
-// function showVal(value){
-//     displayValue += value
-//     display.textContent = displayValue;
-// }
+function displayVal(value){
+    display.textContent = value;
+}
 
 buttons.forEach(button => {
     button.addEventListener("click", function(){
 
         const val = this.value;
-        let currentVal = 0;
+        let currentVal = parseInt(tempArr.join(""));
         let sum = 0;
 
         if(val == "+"){
-            //update the first value by doing the operation
-            currentVal = parseInt(tempArr.join(""));
-
             sum = operate(add, firstVal, currentVal);
-            showVal(sum);
-            displayValue = sum;
             firstVal = sum;
-
             tempArr = [];
-            
+            displayVal(sum);
             
         }
         else{
             tempArr.push(val);
-            showVal(val);
+            displayVal(tempArr.join(""));
         }
     });
 });
