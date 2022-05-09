@@ -27,17 +27,34 @@ buttons.forEach(button => {
         let currentVal = parseInt(tempArr.join(""));
         let sum = 0;
 
-        if(val == "+"){
-            sum = operate(add, firstVal, currentVal);
-            firstVal = sum;
-            tempArr = [];
-            displayVal(sum);
+        switch(val){
+            case "+":
+                sum = operate(add, firstVal, currentVal);
+                firstVal = sum;
+                tempArr = [];
+                displayVal(sum);
+                break;
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+            case "=":
+            case ".":
+            default:
+                tempArr.push(val);
+                displayVal(tempArr.join(""));
+        }
+        // if(val == "+"){
+        //     sum = operate(add, firstVal, currentVal);
+        //     firstVal = sum;
+        //     tempArr = [];
+        //     displayVal(sum);
             
-        }
-        else{
-            tempArr.push(val);
-            displayVal(tempArr.join(""));
-        }
+        // }
+        // else{
+        //     tempArr.push(val);
+        //     displayVal(tempArr.join(""));
+        // }
     });
 });
 
