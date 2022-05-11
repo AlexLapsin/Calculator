@@ -67,8 +67,9 @@ function compute(operator){
     }
     else{
         firstNumb = result;
+        const numFromTempArr = parseInt(tempArr.join(""));
         secondNumb = parseInt(tempArr.join(""));
-        result = operate(operator, firstNumb, secondNumb);      
+        result = operate(currentOperator, firstNumb, secondNumb);      
     }
     currentOperator = operator;
     tempArr = [];
@@ -77,6 +78,7 @@ function compute(operator){
 
 
 function clearDisplay(){
+    currentOperator = undefined;
     firstNumb = undefined;
     secondNumb = 0;
     displayValue = "";
