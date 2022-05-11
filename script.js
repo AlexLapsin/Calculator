@@ -1,14 +1,18 @@
 function add(a,b){return a+b;}
 function subtract(a,b){return a-b;}
 function multiply(a,b){return a*b;}
-function divide(a,b){return a/b;}
+function divide(a,b){(b == 0)? undefined: a/b}
+function modulo(a,b){return a%b;}
 
 function operate(operator,a,b){
     return operator(a,b);
 }
 
 let tempArr = [];
-let firstVal = 0;
+let firstNumb = undefined;
+let secondNumb = 0;
+let result;
+let currentOperator;
 
 const calcMiddle = document.querySelector(".middle");
 const operatorsRight = document.querySelector(".operators-right");
@@ -22,43 +26,58 @@ function displayVal(value){
 
 buttons.forEach(button => {
     button.addEventListener("click", function(){
+        const currentValue = this.value;
 
-        const val = this.value;
-        let currentVal = parseInt(tempArr.join(""));
-        let sum = 0;
-
-        switch(val){
+        switch(currentValue){
             case "+":
-                sum = operate(add, firstVal, currentVal);
-                firstVal = sum;
-                tempArr = [];
-                displayVal(sum);
+                compute(add);
                 break;
             case "-":
+                compute(divide);
             case "*":
+                compute(multiply);
+                break;
             case "/":
+                compute(divide);
+                break;
             case "%":
+                compute(modulo);
+                break;
             case "=":
+                compute(currentOperator);
+                break;
+            case "clear":
+                clearDisplay();
+                break;
             case ".":
+                break;
             default:
-                tempArr.push(val);
+                tempArr.push(currentValue);
                 displayVal(tempArr.join(""));
         }
-        // if(val == "+"){
-        //     sum = operate(add, firstVal, currentVal);
-        //     firstVal = sum;
-        //     tempArr = [];
-        //     displayVal(sum);
-            
-        // }
-        // else{
-        //     tempArr.push(val);
-        //     displayVal(tempArr.join(""));
-        // }
     });
 });
 
+
+function compute(operator){
+    if(firstNumb == undefined){
+        firstNumb = parseInt(tempArr.join(""));
+        result = firstNumb;
+    }
+    else{
+        firstNumb = result;
+        secondNumb = parseInt(tempArr.join(""));
+        result = operate(operator, firstNumb, secondNumb);      
+    }
+    currentOperator = operator;
+    tempArr = [];
+    (result === undefined)? displayVal("Can't divide by 0"): displayVal(result); 
+};
+
+
 function clearDisplay(){
+    firstNumb = undefined;
+    secondNumb = 0;
     displayValue = "";
-    display.textContent = "";
+    display.textContent = "0";
 }
