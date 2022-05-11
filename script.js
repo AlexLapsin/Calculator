@@ -33,7 +33,8 @@ buttons.forEach(button => {
                 compute(add);
                 break;
             case "-":
-                compute(divide);
+                compute(subtract);
+                break;
             case "*":
                 compute(multiply);
                 break;
