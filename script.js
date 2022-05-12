@@ -1,7 +1,7 @@
 function add(a,b){return a+b;}
 function subtract(a,b){return a-b;}
 function multiply(a,b){return a*b;}
-function divide(a,b){(b == 0)? undefined: a/b}
+function divide(a,b){return a/b;}
 function modulo(a,b){return a%b;}
 
 function operate(operator,a,b){
@@ -61,20 +61,25 @@ buttons.forEach(button => {
 
 
 function compute(operator){
-    if(firstNumb == undefined){
+    if(firstNumb === undefined){
         firstNumb = parseInt(tempArr.join(""));
         result = firstNumb;
     }
     else{
         firstNumb = result;
         secondNumb = parseInt(tempArr.join(""));
-        result = operate(currentOperator, firstNumb, secondNumb);      
+        if(secondNumb === 0 && currentOperator === divide){
+            displayVal("Can't divide by 0")
+        }
+        else{
+            result = operate(currentOperator, firstNumb, secondNumb);
+            displayVal(result);      
+        }
     }
     currentOperator = operator;
     tempArr = [];
-    (result === undefined)? displayVal("Can't divide by 0"): displayVal(result); 
+     
 };
-
 
 function clearDisplay(){
     currentOperator = undefined;
