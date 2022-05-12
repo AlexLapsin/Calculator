@@ -13,6 +13,7 @@ let firstNumb = undefined;
 let secondNumb = 0;
 let result;
 let currentOperator;
+let passedEqualOperator = false;
 
 const calcMiddle = document.querySelector(".middle");
 const operatorsRight = document.querySelector(".operators-right");
@@ -46,6 +47,7 @@ buttons.forEach(button => {
                 break;
             case "=":
                 compute(currentOperator);
+                passedEqualOperator = true;
                 break;
             case "clear":
                 clearDisplay();
@@ -65,6 +67,10 @@ function compute(operator){
         firstNumb = parseInt(tempArr.join(""));
         result = firstNumb;
     }
+    else if(passedEqualOperator){
+        firstNumb = result;
+        passedEqualOperator = false;
+    } 
     else{
         firstNumb = result;
         secondNumb = parseInt(tempArr.join(""));
@@ -84,6 +90,7 @@ function compute(operator){
 function clearDisplay(){
     currentOperator = undefined;
     firstNumb = undefined;
+    passedEqualOperator = false;
     secondNumb = 0;
     displayValue = "";
     display.textContent = "0";
